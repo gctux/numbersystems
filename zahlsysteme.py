@@ -5,7 +5,7 @@ from tkinter import font
 from tkinter import messagebox
 from tkinter import filedialog
 from pathlib import Path
-from tkhtmlview import HTMLLabel
+from tkinterweb import HtmlFrame
 import hashlib
 import sys, os, random, time
 
@@ -13,19 +13,28 @@ class AboutWindow(Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         self.html = '''
+            <!DOCTYPE html>
 
-        <p align = 'center'><h3>Zahlsysteme umrechnen!</h3></p>
-
-        <p align = 'center'>&copy; Lutz Herrmann - Georgius-Agricola-Gymnasium Glauchau - 2022 bis 2023</p>
-        <p> Dieses Programm kommt OHNE JEDWEDE GARANTIE. </p>
-        <p> <a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU General Public License, Version 3 oder neuer</a> </p>
+            <html lang="de">
+            <head>
+                <meta charset="utf-8">
+                <title>About numbersystems</title>
+            </head>
+            <body>
+                <p align = 'center'><h3 align = 'center'>Zahlsysteme umrechnen!</h3></p>
+                <p align = 'center'>Version 0.1</p>
+                <p align = 'center'>&copy; Lutz Herrmann <br> Georgius-Agricola-Gymnasium Glauchau <br> 2022 bis 2023</p>
+                <p align = 'center'> Dieses Programm kommt OHNE JEDWEDE GARANTIE. </p>
+                <p align = 'center'> <a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU General Public License, Version 3 oder neuer</a> </p>
+                <p align = 'center'>Projektseite: https://github.com/gctux/numbersystems</p>
+            </body>
+            </html>
         '''
-        self.geometry('800x600')
+        self.geometry('400x300')
         self.title('Hilfe')
-        html_label = HTMLLabel(self, html=self.html)
-        html_label.pack(fill="both", expand=True)
-        html_label.fit_height()
-        ttk.Button(self,text='Close',command=self.destroy).pack()
+        self.html_frame = HtmlFrame(self)
+        self.html_frame.load_html(self.html)
+        self.html_frame.pack(fill="both", expand=True)
 
 class Application(Tk):
 
