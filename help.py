@@ -17,7 +17,7 @@ html = '''
     <p align = 'center'>&copy; Lutz Herrmann <br> Georgius-Agricola-Gymnasium Glauchau <br> 2022 bis 2023</p>
     <p align = 'center'> Dieses Programm kommt OHNE JEDWEDE GARANTIE. </p>
     <p align = 'center'> <a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU General Public License, Version 3 oder neuer</a> </p>
-    <p align = 'center'>Projektseite: </p>
+    <p align = 'center'>Projektseite: https://github.com/gctux/numbersystems</p>
   </body>
 </html>
 '''
