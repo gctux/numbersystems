@@ -31,10 +31,22 @@ class AboutWindow(Toplevel):
             </html>
         '''
         self.geometry('400x300')
-        self.title('Hilfe')
+        self.title('About')
         self.html_frame = HtmlFrame(self)
         self.html_frame.load_html(self.html)
         self.html_frame.pack(fill="both", expand=True)
+
+class HelpWindow(Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        
+        self.geometry('800x600')
+        self.title('Onlinehilfe')
+        self.html_frame = HtmlFrame(self)
+        self.html_frame.load_url('https://herrmix.de/dokuwiki/doku.php?id=softwareprojekte:hilfezahlsysteme')
+        self.html_frame.pack(fill="both", expand=True)
+
+
 
 class Application(Tk):
 
@@ -55,7 +67,7 @@ class Application(Tk):
         self.mDatei.add_command(label="Ende", command=self.quitApp)
         self.menubar.add_cascade(label = "Datei", menu = self.mDatei)
         self.mHilfe = Menu(self.menubar)
-        self.mHilfe.add_command(label="Hilfe")
+        self.mHilfe.add_command(label="Hilfe", command=self.open_help)
         self.mHilfe.add_command(label="Über", command=self.open_about)
         self.menubar.add_cascade(label = "Hilfemenü", menu = self.mHilfe)
         self["menu"] = self.menubar
@@ -314,6 +326,10 @@ class Application(Tk):
         
     def open_about(self):
         window = AboutWindow(self)
+        window.grab_set()
+
+    def open_help(self):
+        window = HelpWindow(self)
         window.grab_set()
 
 
