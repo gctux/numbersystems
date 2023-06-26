@@ -1,28 +1,38 @@
-from tkinterweb import HtmlFrame #import the HTML browser
-import tkinter as tk #python3
+import tkinter as tk
+from tkinter import font as tkFont
 
-root = tk.Tk() #create the tkinter window
-frame = HtmlFrame(root) #create HTML browser
+class RichText(tk.Text):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        default_font = tkFont.nametofont(self.cget("font"))
 
-html = '''
-<!DOCTYPE html>
+        em = default_font.measure("m")
+        default_size = default_font.cget("size")
+        bold_font = tkFont.Font(**default_font.configure())
+        italic_font = tkFont.Font(**default_font.configure())
+        h1_font = tkFont.Font(**default_font.configure())
 
-<html lang="de">
-  <head>
-    <meta charset="utf-8">
-    <title>Meine erste Seite</title>
-  </head>
-  <body>
-    <p align = 'center'><h3 align = 'center'>Zahlsysteme umrechnen!</h3></p>
-    <p align = 'center'>&copy; Lutz Herrmann <br> Georgius-Agricola-Gymnasium Glauchau <br> 2022 bis 2023</p>
-    <p align = 'center'> Dieses Programm kommt OHNE JEDWEDE GARANTIE. </p>
-    <p align = 'center'> <a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU General Public License, Version 3 oder neuer</a> </p>
-    <p align = 'center'>Projektseite: https://github.com/gctux/numbersystems</p>
-  </body>
-</html>
-'''
+        bold_font.configure(weight="bold")
+        italic_font.configure(slant="italic")
+        h1_font.configure(size=int(default_size*2), weight="bold")
 
-frame.load_html(html) #load a file
-root.geometry('400x300')
-frame.pack(fill="both", expand=True) #attach the HtmlFrame widget to the parent window
-root.mainloop()
+        self.tag_configure("bold", font=bold_font)
+        self.tag_configure("italic", font=italic_font)
+        self.tag_configure("h1", font=h1_font, spacing3=default_size)
+
+        lmargin2 = em + default_font.measure("\u2022 ")
+        self.tag_configure("bullet", lmargin1=em, lmargin2=lmargin2)
+
+    def insert_bullet(self, index, text):
+        self.insert(index, f"\u2022 {text}", "bullet")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    text = RichText(root, width=40, height=15)
+    text.pack(fill="both", expand=True)
+
+    text.insert("end", "Rich Text Example\n", "h1")
+    text.insert("end", "Hello, world\n\n")
+    text.insert_bullet("end", "Item 1\n")
+    text.insert_bullet("end", "Item 2\n")
+    root.mainloop()
