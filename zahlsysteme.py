@@ -34,9 +34,10 @@ class HelpWindow(Toplevel):
         super().__init__(parent)
         self.html = '''
             <h3 style=" text-align: center">Programmhilfe</h3>
+            
         '''
-        self.geometry('600x400')
-        self.title('About')
+        self.geometry('800x400')
+        self.title('Programmhilfe')
         self.html_label = HTMLScrolledText(self, html=self.html)
         self.html_label.pack(fill="both", expand=True)
 
