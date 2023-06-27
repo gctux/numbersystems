@@ -5,46 +5,40 @@ from tkinter import font
 from tkinter import messagebox
 from tkinter import filedialog
 from pathlib import Path
-from tkinterweb import HtmlFrame
+from tkhtmlview import HTMLScrolledText
 import hashlib
-import sys, os, random, time
+import sys, random, time
+
+
 
 class AboutWindow(Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         self.html = '''
-            <!DOCTYPE html>
-
-            <html lang="de">
-            <head>
-                <meta charset="utf-8">
-                <title>About numbersystems</title>
-            </head>
-            <body>
-                <p align = 'center'><h3 align = 'center'>Zahlsysteme umrechnen!</h3></p>
-                <p align = 'center'>Version 0.1</p>
-                <p align = 'center'>&copy; Lutz Herrmann <br> Georgius-Agricola-Gymnasium Glauchau <br> 2022 bis 2023</p>
-                <p align = 'center'> Dieses Programm kommt OHNE JEDWEDE GARANTIE. </p>
-                <p align = 'center'> <a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU General Public License, Version 3 oder neuer</a> </p>
-                <p align = 'center'>Projektseite: https://github.com/gctux/numbersystems</p>
-            </body>
-            </html>
+            <h3 style=" text-align: center">Zahlsysteme umrechnen!</h3>
+            <p style=" text-align: center">Version 0.1</p>
+            <p style=" text-align: center">&copy; Lutz Herrmann <br> Georgius-Agricola-Gymnasium Glauchau <br> 2022 bis 2023</p>
+            <p style=" text-align: center"> Dieses Programm kommt OHNE JEDWEDE GARANTIE. </p>
+            <p style=" text-align: center"> <a href='https://www.gnu.org/licenses/gpl-3.0.de.html'>GNU General Public License, Version 3 oder neuer</a> </p>
+            <p style=" text-align: center">Projektseite: <a href = 'https://github.com/gctux/numbersystems'>https://github.com/gctux/numbersystems</a></p>
+            
         '''
-        self.geometry('400x300')
+        self.geometry('600x400')
         self.title('About')
-        self.html_frame = HtmlFrame(self)
-        self.html_frame.load_html(self.html)
-        self.html_frame.pack(fill="both", expand=True)
+        self.html_label = HTMLScrolledText(self, html=self.html)
+        self.html_label.pack(fill="both", expand=True)
+        
 
 class HelpWindow(Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
-        
-        self.geometry('800x600')
-        self.title('Onlinehilfe')
-        self.html_frame = HtmlFrame(self)
-        self.html_frame.load_url('https://herrmix.de/dokuwiki/doku.php?id=softwareprojekte:hilfezahlsysteme')
-        self.html_frame.pack(fill="both", expand=True)
+        self.html = '''
+            <h3 style=" text-align: center">Programmhilfe</h3>
+        '''
+        self.geometry('600x400')
+        self.title('About')
+        self.html_label = HTMLScrolledText(self, html=self.html)
+        self.html_label.pack(fill="both", expand=True)
 
 
 
