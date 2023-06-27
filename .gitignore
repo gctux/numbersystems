@@ -8,3 +8,8 @@ __pycache__
 myvenv/
 venv/
 /.venv
+
+#pyinstaller
+*.spec
+dist/
+build/
