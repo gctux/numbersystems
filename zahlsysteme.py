@@ -34,7 +34,8 @@ class HelpWindow(Toplevel):
         super().__init__(parent)
         self.html = '''
             <h3 style=" text-align: center">Programmhilfe</h3>
-            
+            <p>Zahlsysteme ist ein kleines Pythonprogramm, mit dem man das Umrechnen von Zahlen zwischen dem Dezimalsystem, dem Dualsystem und dem Hexadezimalsystem trinieren kann. Insgesamt</p>
+            <p style=" text-align: center"><img width='600' height='300' src='https://raw.githubusercontent.com/gctux/numbersystems/main/images/picture01.png'></p>
         '''
         self.geometry('800x400')
         self.title('Programmhilfe')
