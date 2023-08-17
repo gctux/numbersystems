@@ -63,7 +63,7 @@ class Application(Tk):
         self.mDatei.add_command(label="Ende", command=self.quitApp)
         self.menubar.add_cascade(label = "Datei", menu = self.mDatei)
         self.mHilfe = Menu(self.menubar)
-        self.mHilfe.add_command(label="Hilfe", command=self.open_help)
+#        self.mHilfe.add_command(label="Hilfe", command=self.open_help)
         self.mHilfe.add_command(label="Über", command=self.open_about)
         self.menubar.add_cascade(label = "Hilfemenü", menu = self.mHilfe)
         self["menu"] = self.menubar
